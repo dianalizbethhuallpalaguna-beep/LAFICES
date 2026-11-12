@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ✏️ EDITAR: título que aparece en la pestaña del navegador -->
+<title>I CONGRESO INTERNACIONAL // XXXII Simposio Peruano de Fisica // SOPERFI 2026 · UNSA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== COLORES: cambia aquí y se actualiza toda la web ===== */
+:root{
+  --hueso:#F5F2EA;      /* fondo claro */
+  --marino:#0F2A4A;     /* texto y secciones oscuras */
+  --marino-2:#173A63;   /* variante para tarjetasa sobre marino */
+  --ambar:#E8A33D;      /* acento (botones, láser) */
+  --linea:#D9D3C4;      /* bordes sobre hueso */
+  --titulos:'Orbitron',system-ui,sans-serif;
+  --texto:'Rajdhani',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--hueso);color:var(--marino);font:400 1.05rem/1.6 var(--texto)}
+h1,h2,h3{font-family:var(--titulos);line-height:1.1}
+h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;margin-bottom:.6rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+section{padding:5rem 0}
+.lead{max-width:60ch;opacity:.8;margin-bottom:2.2rem}
+.btn{display:inline-block;padding:.8rem 1.4rem;font:600 1rem var(--texto);text-decoration:none;border:2px solid var(--ambar);border-radius:4px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.lleno{background:var(--ambar);color:var(--marino)}
+.btn.vacio{color:#fff}
+.oscura{background:var(--marino);color:var(--hueso)}
+.oscura .lead{opacity:.85}
+
+/* ===== BARRA SUPERIOR ===== */
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--linea)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:68px}
+header img{height:46px;display:block}
+nav{display:flex;gap:1.3rem;align-items:center;font-weight:600;font-size:.95rem}
+nav a{text-decoration:none}
+nav a:hover{color:#b97a14}
+@media(max-width:860px){nav a:not(.btn){display:none}}
+
+/* ===== HERO con rayo láser ===== */
+.hero{position:relative;overflow:hidden;min-height:88vh;display:flex;align-items:center;color:#fff;padding:4rem 0;
+  /* ✏️ EDITAR: foto de fondo del hero */
+  background:linear-gradient(rgba(15,42,74,.86),rgba(15,42,74,.94)),url('arequipa-1.png') center/cover}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 80px)}
+.laser{position:absolute;left:0;right:0;top:0;height:2px;z-index:1;background:linear-gradient(90deg,transparent,var(--ambar) 20%,#fff 50%,var(--ambar) 80%,transparent);
+  box-shadow:0 0 18px 4px rgba(232,163,61,.7);animation:baja 6s linear infinite}
+@keyframes baja{from{top:0}to{top:100%}}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);font-weight:800;max-width:14ch}
+.hero .tema{font-size:clamp(1.1rem,2.4vw,1.5rem);max-width:44ch;margin:1.2rem 0;opacity:.9}
+.hero .datos{opacity:.8;margin-bottom:1.6rem}
+.cuenta{display:flex;gap:.8rem;margin-bottom:2rem}
+.cuenta div{border:1px solid rgba(255,255,255,.3);min-width:76px;padding:.6rem;text-align:center}
+.cuenta b{display:block;font:800 2rem var(--titulos)}
+.cuenta small{opacity:.7}
+.hero .btn+.btn{margin-left:.6rem}
+
+/* ===== GRILLAS GENERALES ===== */
+.grid{display:grid;gap:1.2rem}
+.g4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.ponente{background:#fff;border:1px solid var(--linea);padding:1.4rem}
+.avatar{width:96px;height:96px;border-radius:50%;background:var(--marino);color:var(--ambar);display:grid;place-items:center;font:800 1.8rem var(--titulos);margin-bottom:1rem;object-fit:cover}
+.ponente h3{font-size:1.2rem}
+.ponente small{display:block;opacity:.7;margin:.2rem 0 .6rem}
+
+/* ===== PONENTES DESTACADOS ===== */
+#ponentes{background:#061116;color:#f4f7f8}
+#ponentes h2{font-family:var(--titulos);font-size:clamp(1.8rem,4vw,2.8rem)}
+#ponentes .lead{color:#b9c9cc}
+#ponentes .speaker-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+}
+.speaker-card{
+  position:relative;
+  isolation:isolate;
+  min-height:480px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0a2023,#061116 70%);
+  border:1px solid #087c60;
+}
+.speaker-card::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  top:95px;
+  right:-35px;
+  width:75%;
+  height:180px;
+  background:#07553f;
+  opacity:.65;
+  transform:skewY(-10deg);
+}
+.speaker-photo{
+  position:absolute;
+  z-index:0;
+  right:0;
+  bottom:0;
+  width:68%;
+  height:88%;
+  object-fit:cover;
+  object-position:center top;
+  -webkit-mask-image:linear-gradient(to bottom,#000 68%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 68%,transparent 100%);
+}
+.speaker-content{
+  position:relative;
+  z-index:1;
+  min-height:480px;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+}
+.speaker-number{
+  margin-bottom:20px;
+  color:#8aa6a8;
+  font:500 27px var(--titulos);
+}
+.speaker-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:42px}
+.speaker-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 8px;
+  border:1px solid;
+  font:700 11px var(--texto);
+  letter-spacing:1px;
+}
+.speaker-tag.presencial{color:#00d995;border-color:#087c60}
+.speaker-tag.remota{color:#17c9e8;border-color:#12677a}
+.speaker-tag.country{color:#e2ecee;border-color:#31535a;letter-spacing:0}
+.speaker-card h3{
+  max-width:72%;
+  margin:0 0 12px;
+  color:#fff;
+  font:600 clamp(18px,2vw,23px)/1.2 var(--titulos);
+}
+.speaker-role{
+  max-width:68%;
+  margin:0 0 8px;
+  color:#00d995;
+  font:700 12px/1.35 var(--texto);
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+.speaker-institution{
+  max-width:68%;
+  margin:0 0 18px;
+  color:#d2dfe1;
+  font:500 15px/1.4 var(--texto);
+}
+.speaker-link{
+  width:100%;
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid #29434a;
+  color:#17c9e8;
+  text-decoration:none;
+  font:700 13px var(--texto);
+}
+.speaker-link:hover{color:#00d995}
+@media(max-width:700px){
+  #ponentes .speaker-grid{grid-template-columns:1fr}
+  .speaker-card,.speaker-content{min-height:450px}
+  .speaker-content{padding:23px}
+  .speaker-tags{margin-bottom:35px}
+}
+
+/* ===== AGENDA ===== */
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+.tabs button{font:600 1rem var(--texto);padding:.6rem 1.1rem;border:2px solid var(--ambar);background:transparent;color:inherit;cursor:pointer;border-radius:4px}
+.tabs button[aria-selected=true]{background:var(--ambar);color:var(--marino)}
+.dia{display:none}.dia.activo{display:block}
+.fila{display:grid;grid-template-columns:120px 1fr;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.18)}
+.fila b{color:var(--ambar)}
+@media(max-width:560px){.fila{grid-template-columns:1fr;gap:.1rem}}
+
+/* ===== AUDITORIOS / TARJETAS ===== */
+.card{background:#fff;border:1px solid var(--linea);overflow:hidden}
+.card img{width:100%;height:230px;object-fit:cover;display:block}
+.card div{padding:1.2rem}
+.card h3{font-size:1.3rem;margin-bottom:.3rem}
+.guia{display:block;text-decoration:none;background:#fff;border:1px solid var(--linea);padding:1.4rem;transition:transform .15s,border-color .15s}
+.guia:hover{transform:translateY(-3px);border-color:var(--ambar)}
+.guia h3{font-size:1.2rem;margin-bottom:.3rem}
+
+/* ===== TARIFARIO ===== */
+.tabla{overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:640px}
+th,td{padding:.95rem 1rem;text-align:left;border-bottom:1px solid var(--linea)}
+th{background:var(--marino);color:var(--hueso);font-family:var(--titulos)}
+td.precio{font:800 1.3rem var(--titulos)}
+td small{display:block;opacity:.65}
+
+/* ===== GALERÍA AREQUIPA ===== */
+.galeria{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem;margin-top:1.6rem}
+.galeria img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+
+/* ===== SPONSORS ===== */
+.sponsors{display:flex;flex-wrap:wrap;gap:1rem}
+.sponsor{flex:1 1 240px;height:130px;background:#fff;border:1px solid var(--linea);display:grid;place-items:center;padding:1rem}
+.sponsor img{max-width:100%;max-height:100%}
+footer{background:var(--marino);color:var(--hueso);padding:2.5rem 0;font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+@media(prefers-reduced-motion:reduce){.laser{animation:none;top:40%}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<!-- ===================== BARRA SUPERIOR ===================== -->
+<header>
+  <div class="wrap">
+    <!-- ✏️ EDITAR: logo (reemplaza img/logo-laficys.png por tu archivo; ideal PNG con fondo transparente) -->
+    <a href="#inicio"><img src="logo-laficys.png" alt="Logo LaFiCyS"></a>
+    <nav>
+      <a href="#evento">Evento</a><a href="#ponentes">Ponentes</a><a href="#taller">Taller</a>
+      <a href="#agenda">Agenda</a><a href="#papers">Papers</a><a href="#inscripcion">Inscripción</a>
+      <!-- ✏️ EDITAR: enlace de inscripción (puede ser el portal de la UNSA, un Google Forms, etc.) -->
+      <a class="btn lleno" href="indico.un1.edu.pe/event/192">Inscríbete</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<main id="inicio" class="hero">
+  <div class="laser" aria-hidden="true"></div>
+  <div class="wrap">
+    <!-- ✏️ EDITAR: nombre del congreso -->
+    <h1>I CONGRESO INTERNACIONAL // XXXII Simposio Peruano de Fisica // SOPERFI 2026 · UNSA</h1>
+    <!-- ✏️ EDITAR: lema o tema central -->
+    <p class="tema">Física computacional y energía solar: simulación, datos y sociedad.</p>
+    <!-- ✏️ EDITAR: fechas y sede -->
+    <p class="datos">17 al 20 de noviembre de 2026 · Universidad Nacional de San Agustín de Arequipa</p>
+    <div class="cuenta" aria-label="Cuenta regresiva">
+      <div><b id="d">00</b><small>días</small></div><div><b id="h">00</b><small>horas</small></div>
+      <div><b id="m">00</b><small>min</small></div><div><b id="s">00</b><small>seg</small></div>
+    </div>
+    <a class="btn lleno" href="#inscripcion">Regístrate ahora</a>
+    <a class="btn vacio" href="#papers">Envía tu artículo</a>
+  </div>
+</main>
+
+<!-- ===================== SOBRE EL EVENTO ===================== -->
+<section id="evento">
+  <div class="wrap">
+    <h2>Sobre el evento</h2>
+    <!-- ✏️ EDITAR: descripción del congreso (2 o 3 párrafos) -->
+    <p class="lead">Texto de ejemplo: la Sociedad Peruana de Física (SOPERFI) reúne en Arequipa a investigadores, docentes y estudiantes para compartir avances en física, con el Laboratorio de Física Computacional y Energía Solar como organizador principal.</p>
+    <p class="lead">Texto de ejemplo: cuatro días de conferencias, un taller práctico y una visita guiada al centro histórico de la ciudad.</p>
+    <!-- ✏️ EDITAR: organizador responsable -->
+    <p><strong>Coordinación:</strong> SOPERFI y MSc. Miguel Ángel Vizcardo Cornejo</p>
+  </div>
+</section>
+
+<!-- ===================== PONENTES INVITADOS ===================== -->
+<section id="ponentes" class="oscura">
+  <div class="wrap">
+    <h2>Speakers destacados</h2>
+    <p class="lead">Especialistas que compartirán su investigación durante el congreso.</p>
+
+    <div class="speaker-grid">
+
+      <!-- PONENTE 01: cambia la ruta de la fotografía por tu archivo -->
+      <article class="speaker-card">
+        <img
+          class="speaker-photo"
+          src="img/ponentes/joel-ireta.jpg"
+          alt="Fotografía del Dr. Joel Ireta"
+          loading="lazy"
+        >
+
+        <div class="speaker-content">
+          <span class="speaker-number">01</span>
+
+          <div class="speaker-tags">
+            <span class="speaker-tag presencial">● PRESENCIAL</span>
+            <span class="speaker-tag country">🇲🇽 México</span>
+          </div>
+
+          <h3>Dr. Joel Ireta</h3>
+          <p class="speaker-role">Investigador y conferencista</p>
+          <p class="speaker-institution">Universidad Autónoma Metropolitana (UAM)</p>
+
+          <a
+            class="speaker-link"
+            href="https://www.fqt.izt.uam.mx/Profes/JIM/Joel.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Ver perfil ↗</a>
+        </div>
+      </article>
+
+      <!--
+        PARA AGREGAR OTRO PONENTE:
+        Duplica el bloque <article class="speaker-card"> completo.
+        Cambia número, foto, nombre, modalidad, país, institución y enlace.
+      -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TALLER ===================== -->
+<section id="taller">
+  <div class="wrap">
+    <h2>Taller práctico</h2>
+    <!-- ✏️ EDITAR: nombre, docente, nivel y descripción del taller -->
+    <div class="ponente">
+      <h3>Nombre del taller</h3>
+      <small>Dirigido por Nombre Apellido · Nivel intermedio · Fecha por confirmar</small>
+      <p>Texto de ejemplo: taller práctico para simular un sistema físico paso a paso con Python.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AGENDA 17–20 NOV ===================== -->
+<section id="agenda" class="oscura">
+  <div class="wrap">
+    <h2>Agenda del congreso</h2>
+    <div class="tabs" role="tablist">
+      <!-- ✏️ EDITAR: nombres de las pestañas (fechas) -->
+      <button role="tab" aria-selected="true" data-d="0">17 de noviembre</button>
+      <button role="tab" aria-selected="false" data-d="1">18 de noviembre</button>
+      <button role="tab" aria-selected="false" data-d="2">19 de noviembre</button>
+      <button role="tab" aria-selected="false" data-d="3">20 de noviembre</button>
+    </div>
+    <!-- ✏️ EDITAR: cada fila = hora + actividad. Copia y pega filas para agregar más -->
+    <div class="dia activo">
+      <div class="fila"><b>08:30 – 09:00</b><span>Inauguración</span></div>
+      <div class="fila"><b>09:00 – 10:00</b><span>Conferencia inaugural (auditorio3.jpg)</span></div>
+      <div class="fila"><b>10:00 – 11:00</b><span>Conferencia 2 (auditorio2.jpg)</span></div>
+      <div class="fila"><b>11:00 – 11:30</b><span>Receso</span></div>
+      <div class="fila"><b>11:30 – 13:00</b><span>Presentación de artículos</span></div>
+    </div>
+    <div class="dia">
+      <div class="fila"><b>09:00 – 13:00</b><span>Visita guiada al centro histórico de Arequipa (punto de encuentro por confirmar)</span></div>
+    </div>
+    <div class="dia">
+      <div class="fila"><b>09:00 – 10:00</b><span>Conferencia (auditorio3)</span></div>
+      <div class="fila"><b>10:00 – 11:00</b><span>Conferencia (auditorio2)</span></div>
+      <div class="fila"><b>14:30 – 17:00</b><span>Taller práctico</span></div>
+    </div>
+    <div class="dia">
+      <div class="fila"><b>09:00 – 10:00</b><span>Conferencia de cierre</span></div>
+      <div class="fila"><b>17:00 – 18:00</b><span>Clausura</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONVOCATORIA DE ARTÍCULOS ===================== -->
+<section id="papers">
+  <div class="wrap">
+    <h2>Convocatoria de artículos científicos</h2>
+    <!-- ✏️ EDITAR: texto de la convocatoria -->
+    <p class="lead">Texto de ejemplo: invitamos a investigadores, profesionales y estudiantes a presentar trabajos originales en las áreas del congreso.</p>
+    <div class="grid g3" style="margin-bottom:1.6rem">
+      <div class="ponente"><h3>Temas</h3>
+        <!-- ✏️ EDITAR: lista de temas -->
+        <ul style="padding-left:1.1rem"><li>Dinámica no lineal</li><li>Dinámica molecular</li><li>Energía solar</li><li>DFT y materiales</li></ul></div>
+      <div class="ponente"><h3>Tipos de contribución</h3>
+        <p>Artículo completo y artículo corto. Los trabajos deben ser originales y no estar en evaluación simultánea.</p></div>
+      <div class="ponente"><h3>Fechas clave</h3>
+        <!-- ✏️ EDITAR: fechas de envío, notificación y versión final -->
+        <p>Envío: dd/mm/2026<br>Notificación: dd/mm/2026<br>Versión final: dd/mm/2026</p></div>
+    </div>
+    <!-- ✏️ EDITAR: pega aquí el enlace de EasyChair (página de login de tu conferencia) -->
+    <a class="btn lleno" href="https://easychair.org/conferences/?conf=TU_CONFERENCIA" target="_blank" rel="noopener">Enviar artículo</a>
+  </div>
+</section>
+
+<!-- ===================== AUDITORIOS (3) ===================== -->
+<section id="auditorios" style="background:#fff">
+  <div class="wrap">
+    <h2>Auditorios</h2>
+    <p class="lead">Espacios donde se realizarán las conferencias y presentaciones.</p>
+    <div class="grid g3">
+      <!-- ✏️ EDITAR: foto (src), nombre y descripción de cada auditorio -->
+      <article class="card"><img src="img/arequipa-1.png" alt="Auditorio 1"><div><h3>auditorio1.jpg</h3><p>Nombre y ubicación del auditorio.</p></div></article>
+      <article class="card"><img src="img/arequipa-2.png" alt="Auditorio 2"><div><h3>auditorio2.jpg</h3><p>Nombre y ubicación del auditorio.</p></div></article>
+      <article class="card"><img src="img/arequipa-6.png" alt="Auditorio 3"><div><h3>auditorio3.jpg</h3><p>Nombre y ubicación del auditorio.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GUÍA DE INSCRIPCIÓN ===================== -->
+<section id="inscripcion">
+  <div class="wrap">
+    <h2>Guía de inscripción y pago</h2>
+    <p class="lead">Consulta el procedimiento antes de inscribirte.</p>
+    <div class="grid g3" style="margin-bottom:3rem">
+      <!-- ✏️ EDITAR: cada href apunta a un PDF online (Drive, o un PDF dentro del repo, ej. "docs/manual.pdf") -->
+      <a class="guia" href="docs/manual-inscripcion.pdf" target="_blank" rel="noopener"><h3>Manual de inscripción</h3><p>Paso a paso para registrarte.</p></a>
+      <a class="guia" href="docs/pago-nacional.pdf" target="_blank" rel="noopener"><h3>Pago nacional</h3><p>Instrucciones y cuentas bancarias en Perú.</p></a>
+      <a class="guia" href="docs/pago-extranjero.pdf" target="_blank" rel="noopener"><h3>Pago desde el extranjero</h3><p>Guía para pagos internacionales.</p></a>
+    </div>
+
+    <h2>Tarifario</h2>
+    <p class="lead">Selecciona tu modalidad y revisa su vigencia.</p>
+    <div class="tabla">
+      <table>
+        <thead><tr><th>Modalidad</th><th>Inversión</th><th>Desde</th><th>Hasta</th><th>Inscripción</th></tr></thead>
+        <tbody>
+          <!-- ✏️ EDITAR: modalidad, precio, fechas y enlace de cada fila. Copia una fila <tr> para agregar más -->
+          <tr><td>Estudiante UNSA<small>Comunidad UNSA</small></td><td class="precio">S/. 000.00</td><td>dd/mm/2026</td><td>dd/mm/2026</td><td><a class="btn lleno" href="#">Inscríbete</a></td></tr>
+          <tr><td>Estudiante nacional<small>Otras universidades</small></td><td class="precio">S/. 000.00</td><td>dd/mm/2026</td><td>dd/mm/2026</td><td><a class="btn lleno" href="#">Inscríbete</a></td></tr>
+          <tr><td>Profesional<small>Público general</small></td><td class="precio">S/. 000.00</td><td>dd/mm/2026</td><td>dd/mm/2026</td><td><a class="btn lleno" href="#">Inscríbete</a></td></tr>
+          <tr><td>Internacional<small>Pago desde el exterior</small></td><td class="precio">$ 00.00</td><td>dd/mm/2026</td><td>dd/mm/2026</td><td><a class="btn lleno" href="#">Inscríbete</a></td></tr>
+          <tr><td>Taller<small>Acceso individual</small></td><td class="precio">S/. 000.00</td><td>dd/mm/2026</td><td>dd/mm/2026</td><td><a class="btn lleno" href="#">Inscríbete</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AREQUIPA (galería para la visita guiada) ===================== -->
+<section class="oscura" id="arequipa">
+  <div class="wrap">
+    <h2>Arequipa te espera</h2>
+    <p class="lead">El 18 de noviembre recorreremos juntos el centro histórico.</p>
+    <!-- ✏️ EDITAR: fotos (cambia src por tus archivos en la carpeta img/). Borra las que no quieras -->
+    <div class="galeria">
+      <img src="img/arequipa-4.png" alt="Catedral de Arequipa al atardecer">
+      <img src="img/arequipa-5.png" alt="Plaza de Armas">
+      <img src="img/arequipa-7.png" alt="Plaza de Armas y fuente">
+      <img src="img/arequipa-8.png" alt="Torre de la Catedral">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SPONSORS ===================== -->
+<section id="sponsors">
+  <div class="wrap">
+    <h2>Sponsors</h2>
+    <p class="lead">Instituciones y empresas que hacen posible el congreso.</p>
+    <div class="sponsors">
+      <!-- ✏️ EDITAR: reemplaza el texto por <img src="img/sponsor-1.png" alt="Nombre"> (agrega o borra bloques) -->
+      <div class="sponsor">logosoperfi.png</div>
+      <div class="sponsor">logocolegio.jpg</div>
+      <div class="sponsor">logocentex.jpg</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PIE DE PÁGINA ===================== -->
+<footer>
+  <div class="wrap">
+    <!-- ✏️ EDITAR: organizadores y contacto -->
+    <span>© 2026 SOPERFI · Laboratorio de Física Computacional y Energía Solar · UNSA</span>
+    <a href="mailto:correo@ejemplo.com">correo@ejemplo.com</a>
+  </div>
+</footer>
+
+<script>
+/* ✏️ EDITAR: fecha y hora de inicio del congreso (formato AAAA-MM-DDTHH:MM, hora de Perú -05:00) */
+const INICIO = new Date('2026-11-17T08:30:00-05:00');
+
+const pad = n => String(n).padStart(2,'0');
+function cuenta(){
+  let t = Math.max(0, INICIO - new Date()) / 1000;
+  const v = {d:Math.floor(t/86400), h:Math.floor(t%86400/3600), m:Math.floor(t%3600/60), s:Math.floor(t%60)};
+  for (const k in v) document.getElementById(k).textContent = pad(v[k]);
+}
+cuenta(); setInterval(cuenta, 1000);
+
+/* Pestañas de la agenda (no necesitas tocar esto) */
+const tabs = document.querySelectorAll('.tabs button'), dias = document.querySelectorAll('.dia');
+tabs.forEach(b => b.addEventListener('click', () => {
+  tabs.forEach(x => x.setAttribute('aria-selected', x === b));
+  dias.forEach((d, i) => d.classList.toggle('activo', i == b.dataset.d));
+}));
+</script>
+</body>
+</html>
